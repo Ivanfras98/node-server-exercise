@@ -3,13 +3,15 @@ import supertest from "supertest";
 
 import app from "./app";
 
-const request = supertest(app);
+import api from "./api"
 
-test("GET /names", async () => {
+const request = supertest(api)
+
+test("GET /api", async () => {
   const response = await request
-    .get("/names")
+    .get("/api")
     .expect(200)
     .expect("Content-Type", /application\/json/);
 
-  expect(response.body).toEqual(["Ivan", "Ciccio", "Pippo"]);
+  expect(response.body).toEqual("http://numbersapi.com/random/math");
 });
